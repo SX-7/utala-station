@@ -1,0 +1,28 @@
+name: Copy repo
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependencies
+        run: sudo apt install -y ${{ vars.APT_DEPENDENCIES }}
+
+      - name: Install stgit as crate
+        run: cargo install stgit
+
+      - name: Get our repo
+        uses: actions/checkout@v4
+        with:
+          path: ours
+        
+      - name: Get upstream repo
+        uses: actions/checkout@v4
+        with:
+          path: them
+          repository: ${{ vars.UPSTREAM_ORG_REPO }}
+ 
