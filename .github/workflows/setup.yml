@@ -1,17 +1,12 @@
 name: Copy repo
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  clone:
+  compile:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Install dependencies
-        run: sudo apt install -y ${{ vars.APT_DEPENDENCIES }}
-
       - name: Install stgit as crate
         run: cargo install stgit
 
@@ -25,4 +20,13 @@ jobs:
         with:
           path: them
           repository: ${{ vars.UPSTREAM_ORG_REPO }}
+
+      - name: Convert new upstream commits to patches
+
+      - name: Cache patches
  
+      - name: Update HEAD pointer
+
+      - name: Combine patches with features
+
+      - name: Integrate stable features
